@@ -32,7 +32,7 @@
   </script>
 
   <!-- Fonts -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap">
 
   <!-- Styles -->
   <style>
@@ -43,8 +43,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: 'Inter', Arial, sans-serif;
-      background-color: #1a1a1a;
+      font-family: 'DM Sans', sans-serif;
+      background-color: #151fd9;
       color: #ffffff;
     }
 
@@ -56,7 +56,14 @@
 
     p {
       line-height: 1.6;
-      font-size: 1.1rem;
+      font-size: 1.25rem;
+      font-weight: 500;
+      position: relative;
+      display: inline;
+      background-image: linear-gradient(transparent 60%, #fa56ab 40%);
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+      padding: 0 4px;
     }
 
     .visually-hidden {
@@ -105,8 +112,8 @@
   <script defer nonce="easteregg">
     const config = {
       colors: {
-        logo: "#FFD700", // Bright gold for ASCII art
-        text: "#FFE135", // Warm yellow for messages
+        logo: "#fa56ab",
+        text: "#fa56ab",
       },
       messages: {
         header: "oopsie! you found me ;)",
@@ -117,7 +124,7 @@
       },
       ascii: `
 ███████╗ ██████╗ ██╗██████╗ ███████╗██████╗ ███╗   ███╗ █████╗ ██████╗ 
-██╔════╝██╔═══██╗██║██╔══██╗██╔════╝██╔══██╗████╗ ███��║██╔══██╗██╔══██╗
+██╔════╝██╔═══██╗██║██╔══██╗██╔════╝██╔══██╗████╗ ███║██╔══██╗██╔══██╗
 ███████╗██║   ██║██║██║  ██║█████╗  ██████╔╝██╔████╔██║███████║██║  ██║
 ╚════██║██║▄▄ ██║██║██║  ██║██╔══╝  ██╔══██╗██║╚██╔╝██║██╔══██║██║  ██║
 ███████║╚██████╔╝██║██████╔╝███████╗██║  ██║██║ ╚═╝ ██║██║  ██║██████╔╝
