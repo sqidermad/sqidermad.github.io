@@ -67,6 +67,8 @@
   let bounds = { w: window.innerWidth, h: window.innerHeight };
   let rafId;
   let lastTs = 0;
+  let lastInteraction = performance.now();
+  const IDLE_TIMEOUT_MS = 15000;
 
   const getMatrixBounds = () => {
     const isAdhd = document.body.getAttribute("data-theme") === "adhd";
@@ -80,6 +82,13 @@
   const getCurrentMatrix = () => {
     const isAdhd = document.body.getAttribute("data-theme") === "adhd";
     return isAdhd ? adhdMatrix : mainMatrix;
+  };
+
+  const startAnimationIfNeeded = () => {
+    if (!rafId && bits.length > 0) {
+      lastTs = 0;
+      rafId = requestAnimationFrame(animateBits);
+    }
   };
 
   const spawnBits = (count = 260) => {
@@ -100,10 +109,11 @@
       const speed = 14 + Math.random() * 36;
       const vx = Math.cos(angle) * speed;
       const vy = Math.sin(angle) * speed;
+      const alpha = 0.35 + Math.random() * 0.2;
       el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
       el.dataset.depth = depth.toFixed(2);
       frag.appendChild(el);
-      bits.push({ el, x, y, vx, vy, depth });
+      bits.push({ el, x, y, vx, vy, depth, alpha });
     }
     matrix.appendChild(frag);
   };
@@ -115,10 +125,6 @@
         bit.vx *= -1;
         bit.vy *= -1;
       }
-      if (Math.random() < 0.015) {
-        bit.vx += (Math.random() - 0.5) * 18;
-        bit.vy += (Math.random() - 0.5) * 18;
-      }
     });
   };
 
@@ -128,13 +134,13 @@
     
     // Don't animate if ADHD mode is active but animation is disabled
     if (isAdhd && !animationEnabled) {
-      rafId = requestAnimationFrame(animateBits);
+      rafId = null;
       return;
     }
     
     const matrix = getCurrentMatrix();
     if (!matrix || bits.length === 0) {
-      rafId = requestAnimationFrame(animateBits);
+      rafId = null;
       return;
     }
 
@@ -166,11 +172,6 @@
         bit.vy += (dy / dist) * influence * dt;
       }
 
-      if (Math.random() < 0.02) {
-        bit.vx += (Math.random() - 0.5) * 30 * dt;
-        bit.vy += (Math.random() - 0.5) * 30 * dt;
-      }
-
       bit.x += bit.vx * dt;
       bit.y += bit.vy * dt;
 
@@ -180,15 +181,22 @@
       if (bit.y > currentBounds.h + 40) bit.y = -40;
 
       bit.el.style.transform = `translate3d(${bit.x}px, ${bit.y}px, 0)`;
-      bit.el.style.opacity = 0.35 + Math.random() * 0.2;
+      bit.el.style.opacity = bit.alpha;
     });
 
     lastTs = ts;
+    // If user has been idle for a while, pause the animation loop to save resources
+    if (ts - lastInteraction > IDLE_TIMEOUT_MS) {
+      rafId = null;
+      return;
+    }
     rafId = requestAnimationFrame(animateBits);
   };
 
   const handlePointer = (event) => {
     cursorTarget = { x: event.clientX, y: event.clientY };
+    lastInteraction = performance.now();
+    startAnimationIfNeeded();
   };
 
   const setBaseFontSize = (size) => {
@@ -344,10 +352,9 @@
         if (animationEnabled) {
           setTimeout(() => {
             bounds = getMatrixBounds();
+            // Slightly denser field in ADHD mode, but fewer bits than before for performance
             spawnBits(520);
-            if (!rafId) {
-              rafId = requestAnimationFrame(animateBits);
-            }
+            startAnimationIfNeeded();
           }, 100);
         } else {
           // Clear bits if animation is disabled
@@ -363,13 +370,11 @@
         if (adhdAnimationControl) {
           adhdAnimationControl.style.display = "none";
         }
-        // Respawn bits in main matrix when leaving ADHD mode
+        // Respawn bits in main matrix when leaving ADHD mode (slightly lighter density)
         setTimeout(() => {
           bounds = getMatrixBounds();
           spawnBits(520);
-          if (!rafId) {
-            rafId = requestAnimationFrame(animateBits);
-          }
+          startAnimationIfNeeded();
         }, 100);
       }
     }
@@ -641,9 +646,7 @@
       if (document.body.getAttribute("data-theme") === "adhd") {
         bounds = getMatrixBounds();
         spawnBits(520);
-        if (!rafId) {
-          rafId = requestAnimationFrame(animateBits);
-        }
+        startAnimationIfNeeded();
       }
     }
   });
@@ -801,11 +804,22 @@
   cycleGreeting();
   window.addEventListener("pointermove", handlePointer, { passive: true });
   window.addEventListener("resize", handleResize);
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+    } else {
+      lastInteraction = performance.now();
+      startAnimationIfNeeded();
+    }
+  });
   
-  // Start animation for all themes
+  // Start animation for all themes with theme-aware density
   bounds = getMatrixBounds();
-  spawnBits(520);
-  setInterval(shuffleBits, 1800);
-  rafId = requestAnimationFrame(animateBits);
+  const initialIsAdhd = document.body.getAttribute("data-theme") === "adhd";
+  spawnBits(initialIsAdhd ? 360 : 520);
+  setInterval(shuffleBits, 2400);
+  startAnimationIfNeeded();
 })();
-
