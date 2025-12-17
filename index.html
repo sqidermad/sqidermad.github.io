@@ -6,77 +6,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO Meta Tags -->
-  <title>sqidermad.dev - Developer Portfolio Coming Soon</title>
+  <title>Maria Vanessa Salim | Software Engineer | sqidermad.dev</title>
   <meta name="description"
-    content="Future home of an overengineered developer portfolio. Currently under development by sqidermad." />
+    content="Software engineer building real-time, intuitive applications for cellular surveillance and intelligence. Open to conversations about technology, intelligence systems, niche rabbit holes, and collaborations." />
   <meta name="keywords"
-    content="developer, portfolio, web development, software engineer, sqidermad, maria vanessa salim, vane siburian, maria vanessa salim siburian" />
-  <meta name="author" content="sqidermad" />
+    content="software engineer, cellular surveillance, intelligence systems, real-time applications, sqidermad, maria vanessa salim, vane siburian, collaborations" />
+  <meta name="author" content="Maria Vanessa Salim" />
   <meta name="robots" content="index, follow" />
 
   <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:title" content="sqidermad.dev - Portfolio Coming Soon" />
-  <meta property="og:description" content="Currently under development by sqidermad." />
+  <meta property="og:title" content="Maria Vanessa Salim | Software Engineer" />
+  <meta property="og:description"
+    content="Building real-time, intuitive applications for field and tactical environments." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sqidermad.dev" />
 
   <!-- Semantic HTML Structure with Schema.org -->
-  <script type="application/ld+json">
+  <script type="application/ld+json" nonce="easteregg">
     {
-      "@context": "http://schema.org",
-      "@type": "WebSite",
-      "name": "sqidermad.dev",
-      "description": "Future home of an overengineered developer portfolio",
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Maria Vanessa Salim",
+      "alternateName": "sqidermad",
+      "jobTitle": "Software Engineer",
+      "description": "Software engineer building real-time, intuitive applications for cellular surveillance and intelligence.",
       "url": "https://sqidermad.dev"
     }
   </script>
 
   <!-- Fonts -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
 
   <!-- Styles -->
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: 'DM Sans', sans-serif;
-      background-color: #151fd9;
-      color: #ffffff;
-    }
-
-    .container {
-      text-align: center;
-      max-width: 600px;
-      padding: 20px;
-    }
-
-    p {
-      line-height: 1.6;
-      font-size: 1.25rem;
-      font-weight: 500;
-      position: relative;
-      display: inline;
-      background-image: linear-gradient(transparent 60%, #fa56ab 40%);
-      box-decoration-break: clone;
-      -webkit-box-decoration-break: clone;
-      padding: 0 4px;
-    }
-
-    .visually-hidden {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      border: 0;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 
   <!-- Performance optimizations -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -98,61 +61,121 @@
 </head>
 
 <body>
-  <main>
-    <div class="container">
-      <h1 class="visually-hidden">sqidermad.dev Portfolio</h1>
-      <p aria-label="Coming soon message">
-        This domain exists solely to push me past procrastination and build an
-        overengineered portfolio (no need to stay tuned).
-      </p>
+  <div class="toast-notification" role="alert" aria-live="polite">
+    <p class="toast-message">This website is currently under maintenance and I've identified myself as beyond lazy. So please be content strolling around here.</p>
+  </div>
+  <div class="matrix" id="main-matrix" aria-hidden="true"></div>
+  <div id="live-region" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+  <main id="main-content" class="page">
+    <div class="hero">
+      <p class="pill">Maria Vanessa Salim · sqidermad</p>
+      <h1 class="typewriter">
+        <span id="dynamic-greeting" class="highlighted-text"></span>
+        <span class="caret" aria-hidden="true"></span>
+        <small class="pinyin-sub" id="pinyin-line"></small>
+      </h1>
+      <p class="lede"><span class="highlighted-text">My brain works in layers, and I focus on building real-time, intuitive applications for field and tactical environments.</span></p>
+      <p class="lede"><span class="highlighted-text">When I'm not shipping products, I'm usually out on long walks, being a plant parent, writing reflections on <a class="inline-link" href="https://medium.com/@sqidermad" data-tooltip="Read essays & reflections on Medium" rel="noopener noreferrer">Medium</a>, sharing frames on <a class="inline-link" href="https://www.instagram.com/sqidermad" data-tooltip="See photo diaries on Instagram" rel="noopener noreferrer">Instagram</a>, or curating playlists on <a class="inline-link" href="https://open.spotify.com/user/31gak3rr35gidcehnnbhwrrzek2m?si=d12c066ad44941d2" data-tooltip="Listen in on my Spotify mixes" rel="noopener noreferrer">Spotify</a>.</span></p>
+      <p class="lede"><span class="highlighted-text">Always open to conversations about technology, intelligence systems, niche rabbit holes, and potential collaborations—find me on <a class="inline-link" href="https://www.linkedin.com/in/sqidermad" data-tooltip="Connect professionally on LinkedIn" rel="noopener noreferrer">LinkedIn</a>.</span></p>
+      <p class="lede"><span class="highlighted-text">Even though I'm shy and do nothing there, like other software engineers, I do also have a <a class="inline-link" href="https://github.com/sqidermad" data-tooltip="Check out my GitHub (though I'm shy there too)" rel="noopener noreferrer">GitHub</a> account.</span></p>
+    </div>
+    <div class="stim-pane" aria-hidden="true">
+      <div class="stim-visual">
+        <div class="matrix" id="adhd-matrix" aria-hidden="true"></div>
+      </div>
     </div>
   </main>
 
-  <!-- Console Easter Egg -->
-  <script defer nonce="easteregg">
-    const config = {
-      colors: {
-        logo: "#fa56ab",
-        text: "#fa56ab",
-      },
-      messages: {
-        header: "oopsie! you found me ;)",
-        intro: "since you already snooping around.. why not connect?",
-        social:
-          "found me anywhere on instagram, twitter, linkedin, medium or github using this handle @sqidermad",
-        footer: "(pls hire me. i need to survive in this economy)",
-      },
-      ascii: `
-███████╗ ██████╗ ██╗██████╗ ███████╗██████╗ ███╗   ███╗ █████╗ ██████╗ 
-██╔════╝██╔═══██╗██║██╔══██╗██╔════╝██╔══██╗████╗ ███║██╔══██╗██╔══██╗
-███████╗██║   ██║██║██║  ██║█████╗  ██████╔╝██╔████╔██║███████║██║  ██║
-╚════██║██║▄▄ ██║██║██║  ██║██╔══╝  ██╔══██╗██║╚██╔╝██║██╔══██║██║  ██║
-███████║╚██████╔╝██║██████╔╝███████╗██║  ██║██║ ╚═╝ ██║██║  ██║██████╔╝
-╚══════╝ ╚══▀▀═╝ ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═════╝ 
-      `,
-    };
+  <aside class="access-panel" aria-label="Accessibility controls">
+    <div class="access-header">
+      <p class="access-title">Accessibility</p>
+      <button class="access-collapse-btn" id="access-collapse" type="button" aria-expanded="true" aria-label="Collapse accessibility panel">✕</button>
+    </div>
+    <div class="access-content">
+      <div class="access-group">
+      <span class="access-label">Highlighting</span>
+      <div class="control-row">
+        <button class="access-toggle" id="highlight-toggle" type="button">Highlight: On</button>
+      </div>
+      <span class="access-note">Toggle a yellow half-height highlight on key text. Text is still selectable.</span>
+    </div>
+    <div class="access-group">
+      <label class="access-label" for="font-select">Font family</label>
+      <div class="custom-select" data-select="font-select">
+        <button class="custom-select-trigger" type="button" id="font-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+          <span class="custom-select-value">Plus Jakarta Sans</span>
+          <span class="custom-select-arrow">▼</span>
+        </button>
+        <ul class="custom-select-options" role="listbox" id="font-select-options">
+          <li role="option" data-value="Plus Jakarta Sans" class="custom-select-option" aria-selected="true">Plus Jakarta Sans</li>
+          <li role="option" data-value="Inter" class="custom-select-option">Inter</li>
+          <li role="option" data-value="Merriweather" class="custom-select-option">Merriweather</li>
+          <li role="option" data-value="Atkinson Hyperlegible" class="custom-select-option">Atkinson Hyperlegible</li>
+        </ul>
+        <select id="font-select" class="visually-hidden" aria-hidden="true" tabindex="-1">
+          <option value="Plus Jakarta Sans">Plus Jakarta Sans</option>
+          <option value="Inter">Inter</option>
+          <option value="Merriweather">Merriweather</option>
+          <option value="Atkinson Hyperlegible">Atkinson Hyperlegible</option>
+        </select>
+      </div>
+    </div>
+    <div class="access-group">
+      <span class="access-label">Font size</span>
+      <div class="control-row" aria-label="Font size controls">
+        <button class="control-btn" id="font-dec" type="button" aria-label="Decrease font size">A-</button>
+        <button class="control-btn" id="font-inc" type="button" aria-label="Increase font size">A+</button>
+      </div>
+    </div>
+    <div class="access-group">
+      <span class="access-label">Line height</span>
+      <div class="control-row" aria-label="Line height controls">
+        <button class="control-btn" id="line-height-dec" type="button" aria-label="Decrease line height">─</button>
+        <button class="control-btn" id="line-height-inc" type="button" aria-label="Increase line height">+</button>
+      </div>
+      <span class="access-note">Adjust spacing between lines for better readability.</span>
+    </div>
+    <div class="access-group">
+      <span class="access-label">Letter spacing</span>
+      <div class="control-row" aria-label="Letter spacing controls">
+        <button class="control-btn" id="letter-spacing-dec" type="button" aria-label="Decrease letter spacing">◄</button>
+        <button class="control-btn" id="letter-spacing-inc" type="button" aria-label="Increase letter spacing">►</button>
+      </div>
+      <span class="access-note">Adjust spacing between letters. Helpful for dyslexia.</span>
+    </div>
+    <div class="access-group">
+      <label class="access-label" for="theme-select">Theme</label>
+      <div class="custom-select" data-select="theme-select">
+        <button class="custom-select-trigger" type="button" id="theme-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+          <span class="custom-select-value">Default</span>
+          <span class="custom-select-arrow">▼</span>
+        </button>
+        <ul class="custom-select-options" role="listbox" id="theme-select-options">
+          <li role="option" data-value="default" class="custom-select-option" aria-selected="true">Default</li>
+          <li role="option" data-value="cb" class="custom-select-option">Color blind friendly</li>
+          <li role="option" data-value="hc" class="custom-select-option">High contrast</li>
+          <li role="option" data-value="adhd" class="custom-select-option">ADHD friendly</li>
+        </ul>
+        <select id="theme-select" class="visually-hidden" aria-hidden="true" tabindex="-1">
+          <option value="default">Default</option>
+          <option value="cb">Color blind friendly</option>
+          <option value="hc">High contrast</option>
+          <option value="adhd">ADHD friendly</option>
+        </select>
+      </div>
+    </div>
+    <div class="access-group" id="adhd-animation-control" style="display: none;">
+      <span class="access-label">ADHD Animation</span>
+      <div class="control-row">
+        <button class="access-toggle" id="adhd-animation-toggle" type="button">Binary Animation: On</button>
+      </div>
+      <span class="access-note">Toggle the binary number animation in the stimulation pane. Some users find it helpful, others prefer just the gradient.</span>
+    </div>
+    </div>
+  </aside>
 
-    const logMessage = (message, isHeader = false) => {
-      const style = `
-        color: ${isHeader ? config.colors.logo : config.colors.text};
-        font-size: ${isHeader ? "20px" : "14px"};
-        font-weight: ${isHeader ? "bold" : "normal"};
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        ${!isHeader ? "line-height: 1.5;" : ""}
-      `;
-      console.log(`%c${message}`, style);
-    };
-
-    console.log(
-      `\n%c${config.ascii}`,
-      `color: ${config.colors.logo}; font-weight: bold; background-color: transparent;`
-    );
-
-    logMessage(config.messages.header, true);
-    logMessage(config.messages.intro);
-    logMessage(config.messages.social);
-    logMessage(config.messages.footer);
-  </script>
+  <!-- Console Easter Egg + Matrix Motion -->
+  <script defer src="app.js"></script>
 
   <noscript>
     <div>
