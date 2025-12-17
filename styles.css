@@ -377,55 +377,6 @@ body[data-highlight="on"] .highlighted-text {
   position: relative;
 }
 
-.inline-link::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  left: 0;
-  bottom: calc(100% + 12px);
-  white-space: nowrap;
-  background: #fefefe;
-  color: #111;
-  padding: 10px 12px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
-  border-radius: 10px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  opacity: 0;
-  transform: translateY(6px);
-  pointer-events: none;
-  transition: opacity 140ms ease, transform 140ms ease;
-  z-index: 3;
-}
-
-.inline-link::before {
-  content: "";
-  position: absolute;
-  bottom: calc(100% + 4px);
-  left: 14px;
-  width: 10px;
-  height: 10px;
-  background: #fefefe;
-  border-left: 1px solid rgba(0, 0, 0, 0.12);
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
-  transform: rotate(45deg);
-  opacity: 0;
-  transition: opacity 140ms ease, transform 140ms ease;
-  z-index: 3;
-}
-
-.inline-link:hover::after,
-.inline-link:focus-visible::after {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.inline-link:hover::before,
-.inline-link:focus-visible::before {
-  opacity: 1;
-  transform: rotate(45deg) translateY(0);
-}
-
 .typewriter {
   display: inline-flex;
   align-items: center;
