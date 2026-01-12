@@ -69,6 +69,8 @@
   let lastTs = 0;
   let lastInteraction = performance.now();
   const IDLE_TIMEOUT_MS = 15000;
+  let isNonDesktop = window.innerWidth <= 1024;
+  let autoCollapsedForNonDesktop = false;
 
   const getMatrixBounds = () => {
     const isAdhd = document.body.getAttribute("data-theme") === "adhd";
@@ -681,32 +683,40 @@
   lineHeightDec?.addEventListener("click", handleLineHeightDec);
   letterSpacingInc?.addEventListener("click", handleLetterSpacingInc);
   letterSpacingDec?.addEventListener("click", handleLetterSpacingDec);
-  accessCollapse?.addEventListener("click", () => {
-    const collapsed = accessPanel?.classList.toggle("is-collapsed");
-    if (accessCollapse) {
-      accessCollapse.textContent = collapsed ? "+" : "✕";
-      accessCollapse.setAttribute("aria-label", collapsed ? "Expand accessibility panel" : "Collapse accessibility panel");
-      accessCollapse.setAttribute("aria-expanded", collapsed ? "false" : "true");
-    }
-    
-    // Adjust body padding when sidebar is collapsed/expanded
-    const root = document.documentElement;
+  const setAccessPanelState = (collapsed) => {
+    if (!accessPanel || !accessCollapse) return;
+    accessPanel.classList.toggle("is-collapsed", collapsed);
+    accessCollapse.textContent = collapsed ? "+" : "✕";
+    accessCollapse.setAttribute("aria-label", collapsed ? "Expand accessibility panel" : "Collapse accessibility panel");
+    accessCollapse.setAttribute("aria-expanded", collapsed ? "false" : "true");
+
     const isMobile = window.innerWidth <= 768;
-    if (isMobile) {
-      // On mobile, don't adjust padding (sidebar goes to bottom)
-      return;
-    }
-    
-    if (collapsed) {
-      root.style.setProperty("--sidebar-width", "48px");
-    } else {
-      const width = window.innerWidth <= 1024 ? "260px" : "280px";
+    if (!isMobile) {
+      const width = collapsed ? "48px" : (window.innerWidth <= 1024 ? "260px" : "280px");
       root.style.setProperty("--sidebar-width", width);
     }
+  };
+
+  accessCollapse?.addEventListener("click", () => {
+    const currentlyCollapsed = accessPanel?.classList.contains("is-collapsed");
+    setAccessPanelState(!currentlyCollapsed);
+    autoCollapsedForNonDesktop = false;
   });
 
   const handleResize = () => {
     bounds = { w: window.innerWidth, h: window.innerHeight };
+    const nowNonDesktop = window.innerWidth <= 1024;
+
+    // Auto-collapse when entering non-desktop; reopen when returning if we auto-collapsed
+    if (nowNonDesktop && !accessPanel?.classList.contains("is-collapsed")) {
+      setAccessPanelState(true);
+      autoCollapsedForNonDesktop = true;
+    } else if (!nowNonDesktop && isNonDesktop && autoCollapsedForNonDesktop) {
+      setAccessPanelState(false);
+      autoCollapsedForNonDesktop = false;
+    }
+
+    isNonDesktop = nowNonDesktop;
     spawnBits(bits.length || 260);
   };
 
@@ -801,6 +811,10 @@
   initTheme();
   initHighlight();
   initAdhdAnimation();
+
+  // Default: collapse accessibility panel on non-desktop viewports
+  setAccessPanelState(isNonDesktop);
+  autoCollapsedForNonDesktop = isNonDesktop;
   cycleGreeting();
   window.addEventListener("pointermove", handlePointer, { passive: true });
   window.addEventListener("resize", handleResize);
